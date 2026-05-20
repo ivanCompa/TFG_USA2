@@ -1,0 +1,6 @@
+{
+    "require": {
+        "stripe/stripe-php": "^20.1",
+        "setasign/fpdf": "^1.8"
+    }
+}

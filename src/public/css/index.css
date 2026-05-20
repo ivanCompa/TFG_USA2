@@ -1,0 +1,511 @@
+/* ESTILOS GENERALES */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #cfe9ff;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+/* HEADER */
+header {
+  background: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #bcd8f0;
+}
+
+.logo img {
+  height: 120px;
+  width: auto;
+}
+
+.header-right {
+  display: flex;
+  gap: 20px;
+  font-size: 18px;
+}
+
+/* RUTA DE NAVEGACIÓN */
+.ruta {
+  padding: 10px 20px;
+  font-size: 18px;
+}
+
+/* BLOQUE SUPERIOR (BUSCADOR + CATEGORÍAS) */
+.bloque-superior {
+  background: white;
+  padding: 10px 20px;
+  border-bottom: 2px solid #bcd8f0;
+}
+
+/*  BUSCADOR  */
+.busqueda {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.busqueda input {
+  padding: 6px;
+  width: 250px;
+  border: 1px solid #888;
+}
+
+.busqueda button {
+  padding: 7px 15px;
+  background: #0077cc;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/*  CATEGORÍAS  */
+.categorias h3 {
+  margin-top: 0;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.fila-categorias {
+  display: flex;
+  gap: 12px;
+}
+
+.fila-categorias button {
+  padding: 12px 18px;
+  font-size: 18px;
+  background: #ffffff;
+  border: 2px solid #a0b8d0;
+  cursor: pointer;
+}
+
+.fila-categorias button:hover {
+  background: #e6f2ff;
+}
+
+/* PRODUCTOS */
+main {
+  margin-left: 0;
+  padding: 20px;
+}
+
+/*  DESTACADOS  */
+.destacados-box {
+  background: #e8d7ff;
+  padding: 20px;
+  border: 2px solid #c7aef5;
+  border-radius: 8px;
+  width: calc(100% - 40px);
+  margin: 20px auto 0 auto;
+  text-align: center;
+}
+
+.destacados-box h3 {
+  text-align: left;
+  margin-left: 10px;
+}
+
+/*  LISTADO DE PRODUCTOS  */
+.productos {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 35px;
+  width: 100%;
+}
+
+.producto {
+  background: white;
+  padding: 10px;
+  width: 200px;
+  text-align: center;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  text-decoration: none;
+  color: black;
+  transition: transform 0.2s ease;
+}
+
+.producto img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  background: white;
+  border-radius: 6px;
+  padding: 5px;
+}
+
+.producto:hover {
+  transform: scale(1.05);
+}
+
+/* ICONOS DE USUARIO Y CARRITO */
+.icono-usuario {
+  height: 40px;
+  width: auto;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+/*  CARRITO  */
+.favoritos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 18px;
+}
+
+.icono-favoritos {
+  width: 30px;
+  height: auto;
+  margin-top: 3px;
+}
+
+.favoritos-contenedor {
+  position: relative;
+  display: inline-block;
+}
+
+.favoritos-numero {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+/* LOGIN / USUARIO */
+.login-text {
+  font-size: 18px;
+  color: #0077cc;
+  text-decoration: none;
+  align-self: center;
+}
+
+.login-text:hover {
+  text-decoration: underline;
+}
+
+/*  MENÚ DE USUARIO  */
+.usuario-menu {
+  position: relative;
+  cursor: pointer;
+  font-size: 18px;
+  color: #0077cc;
+  display: flex;
+  align-items: center;
+}
+
+.usuario-nombre {
+  margin-right: 10px;
+}
+
+.menu-desplegable {
+  display: none;
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background: white;
+  border: 1px solid #bcd8f0;
+  border-radius: 6px;
+  padding: 10px;
+  min-width: 150px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.menu-desplegable a {
+  display: block;
+  padding: 8px;
+  color: #0077cc;
+  text-decoration: none;
+}
+
+.menu-desplegable a:hover {
+  background: #e6f2ff;
+}
+
+.usuario-menu:hover .menu-desplegable {
+  display: block;
+}
+
+/* CARRUSEL ORIGINAL */
+.carrusel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.flecha {
+  background: #0077cc;
+  color: white;
+  border: none;
+  font-size: 28px;
+  padding: 12px 18px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.flecha:hover {
+  background: #005fa3;
+}
+
+.carrusel .productos {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 35px;
+  overflow: visible;
+  width: calc(200px * 4 + 35px * 3);
+  scroll-behavior: smooth;
+  margin: 0 auto;
+}
+
+/* NOTIFICACIONES */
+.notificaciones {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 18px;
+  position: relative;
+  cursor: pointer;
+}
+
+.notificaciones-contenedor {
+  position: relative;
+  display: inline-block;
+}
+
+.icono-notificaciones {
+  width: 30px;
+  height: auto;
+  margin-top: 3px;
+}
+
+.notificaciones-numero {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+/*  MENÚ DE NOTIFICACIONES  */
+.menu-notificaciones {
+  position: absolute;
+  top: 55px;
+  right: 0;
+  background: white;
+  border: 1px solid #bcd8f0;
+  border-radius: 6px;
+  padding: 10px;
+  min-width: 260px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  text-align: left;
+}
+
+.menu-notificaciones p {
+  margin: 0;
+}
+
+.notif-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.notif-item:last-child {
+  border-bottom: none;
+}
+
+.notif-item small {
+  color: #666;
+  font-size: 12px;
+}
+
+/* BLOQUE MORADO (TODOS LOS PRODUCTOS) */
+.todos-productos-box {
+  background: #e8d7ff;
+  padding: 20px;
+  border: 2px solid #c7aef5;
+  border-radius: 8px;
+  width: calc(100% - 40px);
+  margin: 30px auto 40px auto;
+  display: block;
+  text-align: center;
+}
+
+.todos-productos-box h3 {
+  text-align: left;
+  margin-left: 10px;
+  font-size: 22px;
+}
+
+/* BOTÓN VOLVER */
+.volver-btn {
+  display: inline-block;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #0077cc;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.volver-btn:hover {
+  text-decoration: underline;
+}
+
+/*  MENÚ ADMIN  */
+.admin-menu {
+  position: relative;
+  cursor: pointer;
+  font-size: 18px;
+  color: #0077cc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-admin {
+  display: none;
+  position: absolute;
+  top: 55px;
+  right: 0;
+  background: white;
+  border: 1px solid #bcd8f0;
+  border-radius: 6px;
+  padding: 10px;
+  min-width: 150px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+.menu-admin a {
+  display: block;
+  padding: 8px;
+  color: #0077cc;
+  text-decoration: none;
+}
+
+.menu-admin a:hover {
+  background: #e6f2ff;
+}
+
+/* ABRIR MENÚ ADMIN CON HOVER */
+.admin-menu:hover .menu-admin {
+  display: block;
+}
+
+/* PANEL ADMIN */
+.admin-panel {
+  background: white;
+  padding: 20px;
+  border: 2px solid #bcd8f0;
+  border-radius: 8px;
+  margin: 20px auto;
+}
+
+.titulo-admin {
+  font-size: 28px;
+  color: #0077cc;
+  margin-bottom: 20px;
+}
+
+/* TARJETAS */
+.admin-cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.admin-card {
+  background: #e6f2ff;
+  border: 2px solid #bcd8f0;
+  border-radius: 8px;
+  padding: 20px;
+  width: 220px;
+  text-decoration: none;
+  color: #0077cc;
+  font-weight: bold;
+  transition: transform 0.2s ease;
+}
+
+.admin-card:hover {
+  transform: scale(1.05);
+  background: #d8ecff;
+}
+
+/* ACTIVIDAD */
+.admin-actividad {
+  margin-top: 30px;
+}
+
+.admin-actividad ul {
+  list-style: none;
+  padding: 0;
+}
+
+.admin-actividad li {
+  background: #f7fbff;
+  border: 1px solid #bcd8f0;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+
+/* TESTING SEARCH BAR */
+.search-input {
+  border-radius: 10px;
+  transition: box-shadow .25s, border-color .25s;
+}
+
+.search-input:focus {
+  border-color: #0077cc;
+  box-shadow: 0 0 0 3px rgba(0, 119, 204, 0.25);
+}
+
+/* SELECT PROFESIONAL */
+.custom-select {
+  appearance: none;
+  padding-right: 40px;
+  border-radius: 10px;
+  transition: box-shadow .25s, border-color .25s;
+}
+
+.custom-select:focus {
+  border-color: #0077cc;
+  box-shadow: 0 0 0 3px rgba(0, 119, 204, 0.25);
+}
+
+/* FLECHA PERSONALIZADA */
+.select-arrow {
+  pointer-events: none;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 7px solid #555;
+  transform: translateY(-50%);
+  transition: transform .25s;
+}
+
+/* ANIMACIÓN AL ABRIR */
+.custom-select:focus + .select-arrow {
+  transform: translateY(-50%) rotate(180deg);
+}

@@ -1,0 +1,122 @@
+/* CONTENEDOR PRINCIPAL */
+.subir-contenedor {
+  background: white;
+  border: 2px solid #bcd8f0;
+  border-radius: 14px;
+  padding: 30px;
+  width: calc(100% - 40px);
+  max-width: 900px;
+  margin: 30px auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* LABELS */
+.label {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* INPUTS DE TEXTO */
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid #bcd8f0;
+  border-radius: 10px;
+  font-size: 16px;
+  background: #fdfdfd;
+  transition: 0.2s;
+}
+
+.input:focus {
+  border-color: #0077cc;
+  box-shadow: 0 0 6px rgba(0, 119, 204, 0.3);
+  outline: none;
+}
+
+/* TEXTAREA */
+.textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px;
+  border: 2px solid #bcd8f0;
+  border-radius: 10px;
+  font-size: 16px;
+  resize: vertical;
+  background: #fdfdfd;
+  transition: 0.2s;
+}
+
+.textarea:focus {
+  border-color: #0077cc;
+  box-shadow: 0 0 6px rgba(0, 119, 204, 0.3);
+  outline: none;
+}
+
+/* SELECT (DESPLEGABLE) */
+.select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid #bcd8f0;
+  border-radius: 10px;
+  font-size: 16px;
+  background: #fdfdfd;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.select:focus {
+  border-color: #0077cc;
+  box-shadow: 0 0 6px rgba(0, 119, 204, 0.3);
+  outline: none;
+}
+
+/* INPUT FILE */
+.input-file {
+  margin-top: 6px;
+  font-size: 15px;
+}
+
+/* BOTÓN SUBIR */
+.btn-subir {
+  padding: 14px 22px;
+  background: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  width: fit-content;
+  transition: 0.2s;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-subir:hover {
+  background: #005fa3;
+  transform: translateY(-2px);
+}
+
+/* BOTÓN VOLVER */
+.volver-btn {
+  display: inline-block;
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #0077cc;
+  font-weight: bold;
+}
+
+.volver-btn:hover {
+  text-decoration: underline;
+}
+
+/* EFECTOS DE HOVER PARA BOTONES DE BORRADO */
+#main-wrapper:hover .delete-btn {
+    opacity: 1;
+}
+
+.preview-extra-wrapper:hover .delete-btn {
+    opacity: 1;
+}

@@ -1,0 +1,193 @@
+/* CONTENEDOR PRINCIPAL */
+.detalle-contenedor {
+    display: flex;
+    gap: 40px;
+    margin: 40px auto;
+    padding: 25px;
+    background: #ffffff;
+    border: 2px solid #bcd8f0;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 1100px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.08);
+}
+
+/* COLUMNA IZQUIERDA: IMAGEN + CARRUSEL */
+.detalle-imagen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+/* FILA: FLECHA - IMAGEN - FLECHA */
+.fila-carrusel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* VENTANA DEL CARRUSEL */
+.carrusel-detalle {
+    width: 350px;
+    height: 350px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 12px;
+    border: 2px solid #d0d7e6;
+    background: #fff;
+}
+
+/* CINTA INTERIOR */
+.carrusel-inner {
+    display: flex;
+    transition: transform 0.4s ease;
+}
+
+/* CADA IMAGEN */
+.img-carrusel {
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 12px;
+    flex-shrink: 0;
+}
+
+/* FLECHAS */
+.flecha-detalle {
+    background: #0077cc;
+    color: white;
+    border: none;
+    font-size: 26px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.flecha-detalle:hover {
+    background: #005fa3;
+}
+
+/* DOTS */
+.dots {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin: 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dot.active {
+    background-color: #0077cc;
+}
+
+/* COLUMNA DERECHA: INFO DEL PRODUCTO */
+.detalle-info {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-width: 500px;
+}
+
+.detalle-info h2 {
+    font-size: 32px;
+    margin: 0;
+    color: #222;
+}
+
+.descripcion {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #444;
+}
+
+.precio {
+    font-size: 30px;
+    font-weight: bold;
+    color: #0077cc;
+}
+
+.estado {
+    font-size: 18px;
+    color: #555;
+}
+
+/* BOTÓN COMPRAR */
+.btn-comprar {
+    padding: 14px 22px;
+    background: #0077cc;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+    width: fit-content;
+    transition: 0.2s;
+}
+
+.btn-comprar:hover {
+    background: #005fa3;
+}
+
+/* BOTÓN SOLICITAR */
+.btn-solicitar {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 18px;
+    background: #ff9800;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.btn-solicitar:hover {
+    background: #e68900;
+    cursor: pointer;
+}
+
+/* MENSAJES */
+.mensaje-ok {
+    margin-top: 10px;
+    padding: 10px;
+    background: #c8f7c5;
+    border: 1px solid #7ac77a;
+    color: #2d6a2d;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.mensaje-propio {
+    margin-top: 10px;
+    color: #777;
+    font-style: italic;
+}
+
+.mensaje-login {
+    margin-top: 10px;
+    color: #0077cc;
+}
+
+/* BOTÓN VOLVER */
+.volver-btn {
+    display: inline-block;
+    margin: 10px 0 20px 0;
+    font-size: 16px;
+    color: #0077cc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.volver-btn:hover {
+    text-decoration: underline;
+}

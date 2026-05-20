@@ -1,0 +1,44 @@
+/* PERFIL DE USUARIO */
+.perfil-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+}
+
+/* FORMULARIO DE PERFIL */
+.perfil-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* FOTO DE PERFIL */
+.preview-foto {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+/* MENSAJES */
+.ok-msg {
+    color: green;
+    margin-bottom: 15px;
+}
+
+/* BOTÓN VOLVER */
+.volver-btn {
+    display: inline-block;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #0077cc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.volver-btn:hover {
+    text-decoration: underline;
+}

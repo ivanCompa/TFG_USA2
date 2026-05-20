@@ -1,0 +1,113 @@
+/* CONTENEDOR PRINCIPAL */
+.notificaciones-wrapper {
+    margin: 20px 40px 40px 40px;
+}
+
+/* TÍTULO */
+.titulo-notificaciones {
+    font-size: 28px;
+    font-weight: bold;
+    color: #0077cc;
+    margin-bottom: 20px;
+}
+
+/* SIN NOTIFICACIONES */
+.sin-notificaciones {
+    font-size: 18px;
+    color: #555;
+}
+
+/* CAJA DE NOTIFICACIÓN */
+.notif-box {
+    background: white;
+    padding: 15px;
+    border: 1px solid #bcd8f0;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.notif-mensaje {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.notif-fecha {
+    color: #666;
+    font-size: 13px;
+}
+
+/* ACCIONES */
+.notif-actions {
+    margin-top: 10px;
+}
+
+.btn-aceptar,
+.btn-rechazar {
+    padding: 6px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    margin-right: 10px;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 14px;
+}
+
+.btn-aceptar {
+    background: #28a745;
+}
+
+.btn-aceptar:hover {
+    background: #218838;
+}
+
+.btn-rechazar {
+    background: #dc3545;
+}
+
+.btn-rechazar:hover {
+    background: #c82333;
+}
+
+/* MENSAJE DE ESTADO */
+.estado-msg {
+    padding: 10px;
+    margin: 20px 40px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.estado-msg.ok {
+    background: #c8f7c5;
+    border: 1px solid #7ac77a;
+    color: #2d6a2d;
+}
+
+.estado-msg.bad {
+    background: #f7c5c5;
+    border: 1px solid #c77a7a;
+    color: #6a2d2d;
+}
+
+/* NOTIFICACIÓN PROCESADA */
+.notif-procesada {
+    margin-top: 10px;
+    color: #777;
+    font-style: italic;
+}
+
+/* BOTÓN VOLVER */
+.volver-btn {
+    display: inline-block;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #0077cc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.volver-btn:hover {
+    text-decoration: underline;
+}

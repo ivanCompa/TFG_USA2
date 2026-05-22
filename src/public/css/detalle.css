@@ -191,3 +191,93 @@
 .volver-btn:hover {
     text-decoration: underline;
 }
+
+/* ============================
+   RESPONSIVE DETALLE PRODUCTO
+   ============================ */
+
+/* Pantallas medianas (tablets) */
+@media (max-width: 900px) {
+
+  /* Contenedor principal en columna */
+  .detalle-contenedor {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 30px;
+  }
+
+  /* Carrusel más pequeño */
+  .carrusel-detalle {
+    width: 280px;
+    height: 280px;
+  }
+
+  .img-carrusel {
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+  }
+
+  /* Flechas más pequeñas */
+  .flecha-detalle {
+    font-size: 22px;
+    padding: 8px 12px;
+  }
+
+  /* Info centrada */
+  .detalle-info {
+    max-width: 90%;
+    text-align: center;
+  }
+
+  .detalle-info h2 {
+    font-size: 26px;
+  }
+
+  .precio {
+    font-size: 26px;
+  }
+
+  .descripcion {
+    font-size: 16px;
+  }
+}
+
+/* Pantallas pequeñas (móviles) */
+@media (max-width: 500px) {
+
+  .detalle-contenedor {
+    padding: 15px;
+    width: 100%;
+  }
+
+  /* Carrusel aún más pequeño */
+  .carrusel-detalle {
+    width: 220px;
+    height: 220px;
+  }
+
+  .img-carrusel {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+  }
+
+  .flecha-detalle {
+    font-size: 20px;
+    padding: 6px 10px;
+  }
+
+  .detalle-info h2 {
+    font-size: 22px;
+  }
+
+  .precio {
+    font-size: 22px;
+  }
+
+  .descripcion {
+    font-size: 15px;
+  }
+}

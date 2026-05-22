@@ -30,6 +30,9 @@ class Pagos extends Controlador
         // CREAR SESIÓN DE PAGO
         $session = \Stripe\Checkout\Session::create([
             'payment_method_types' => ['card'],
+
+            'billing_address_collection' => 'required',
+
             'line_items' => [
                 [
                     'price_data' => [
@@ -46,6 +49,7 @@ class Pagos extends Controlador
             'success_url' => RUTA_URL . '/pagos/exito',
             'cancel_url' => RUTA_URL . '/pagos/cancelado',
         ]);
+
 
         header("Location: " . $session->url);
         exit;

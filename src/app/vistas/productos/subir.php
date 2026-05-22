@@ -1,7 +1,6 @@
 <?php require RUTA_APP . "/vistas/inc/header.php"; ?>
 
 <link rel="stylesheet" href="<?= RUTA_URL ?>/css/subirProducto.css">
-
 <link rel="stylesheet" href="<?= RUTA_URL ?>/css/index.css">
 
 <nav class="ruta text-xl font-semibold py-4 px-6 text-gray-700">
@@ -22,7 +21,7 @@
         </p>
     <?php endif; ?>
 
-    <form action="<?= RUTA_URL ?>/productos/procesarSubida" method="POST" enctype="multipart/form-data"
+    <form id="formSubida" action="<?= RUTA_URL ?>/productos/procesarSubida" method="POST" enctype="multipart/form-data"
         class="flex flex-col gap-6">
 
         <div>
@@ -35,23 +34,20 @@
             <textarea name="descripcion" class="textarea" required></textarea>
         </div>
 
-
-        <label class="label">Categoría:</label>
+        <!-- CATEGORÍA (CORREGIDO) -->
         <div>
             <label class="label">Categoría:</label>
-            <select name="categoria" class="input" required>
+            <select name="categoria_id" class="input" required>
                 <option value="">Selecciona una categoría</option>
 
                 <?php foreach ($datos['categorias'] as $cat): ?>
-                    <option value="<?= htmlspecialchars($cat['nombre']) ?>">
+                    <option value="<?= $cat['id'] ?>">
                         <?= htmlspecialchars($cat['nombre']) ?>
                     </option>
                 <?php endforeach; ?>
 
             </select>
         </div>
-
-
 
         <div>
             <label class="label">Precio (€):</label>
@@ -77,7 +73,6 @@
                     class="delete-btn absolute top-1 right-1 bg-red-600 text-white w-6 h-6 flex items-center justify-center rounded-full cursor-pointer opacity-0 transition">
                     ✕
                 </span>
-
             </div>
         </div>
 
@@ -88,73 +83,6 @@
             <div id="preview-extra" class="flex gap-4 flex-wrap mt-4"></div>
         </div>
 
-
-        <script>
-            let mainImageFile = null;
-            let extraImageFiles = [];
-
-            function previewMainImage(event) {
-                const file = event.target.files[0];
-                if (!file) return;
-
-                mainImageFile = file;
-
-                const wrapper = document.getElementById("main-wrapper");
-                const img = document.getElementById("preview-main");
-
-                img.src = URL.createObjectURL(file);
-                wrapper.classList.remove("hidden");
-            }
-
-            function removeMainImage() {
-                mainImageFile = null;
-
-                document.querySelector("input[name='imagen']").value = "";
-                document.getElementById("main-wrapper").classList.add("hidden");
-            }
-
-            function previewExtraImages(event) {
-                const contenedor = document.getElementById("preview-extra");
-                contenedor.innerHTML = "";
-
-                extraImageFiles = Array.from(event.target.files);
-
-                extraImageFiles.forEach((file, index) => {
-                    const wrapper = document.createElement("div");
-                    wrapper.className = "relative inline-block";
-
-                    const img = document.createElement("img");
-                    img.src = URL.createObjectURL(file);
-                    img.className = "w-28 h-28 object-cover rounded-lg border";
-
-                    const btn = document.createElement("span");
-                    btn.innerHTML = "✕";
-                    btn.className = "absolute top-1 right-1 bg-red-600 text-white w-6 h-6 flex items-center justify-center rounded-full cursor-pointer opacity-0 hover:opacity-100 transition";
-
-                    btn.onclick = () => removeExtraImage(index);
-
-                    wrapper.appendChild(img);
-                    wrapper.appendChild(btn);
-                    contenedor.appendChild(wrapper);
-                });
-            }
-
-            function removeExtraImage(index) {
-                extraImageFiles.splice(index, 1);
-
-                const input = document.querySelector("input[name='imagenes_extra[]']");
-                const dataTransfer = new DataTransfer();
-
-                extraImageFiles.forEach(file => dataTransfer.items.add(file));
-
-                input.files = dataTransfer.files;
-
-                previewExtraImages({ target: input });
-            }
-        </script>
-
-
-
         <button type="submit" class="btn-subir">
             Publicar producto
         </button>
@@ -162,5 +90,7 @@
     </form>
 
 </div>
+
+<script src="<?= RUTA_URL ?>/js/subir.js"></script>
 
 <?php require RUTA_APP . "/vistas/inc/footer.php"; ?>

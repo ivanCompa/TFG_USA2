@@ -21,11 +21,21 @@
             <?php foreach ($datos['productos'] as $p): ?>
                 <div class="flex items-center gap-6 border-b pb-4">
 
-                    <img src="<?= RUTA_URL ?>/img/productos/<?= $p['imagen'] ?>"
-                        class="w-24 h-24 object-cover rounded-lg border">
+                    <!-- IMAGEN CLICABLE -->
+                    <a href="<?= RUTA_URL ?>/productos/detalle/<?= $p['producto_id'] ?>">
+                        <img src="<?= RUTA_URL ?>/img/productos/<?= $p['imagen'] ?>"
+                            class="w-24 h-24 object-cover rounded-lg border">
+                    </a>
 
                     <div class="flex-1">
-                        <h3 class="text-xl font-semibold text-gray-800"><?= $p['titulo'] ?></h3>
+
+                        <!-- TÍTULO CLICABLE -->
+                        <a href="<?= RUTA_URL ?>/productos/detalle/<?= $p['producto_id'] ?>">
+                            <h3 class="text-xl font-semibold text-gray-800 hover:underline">
+                                <?= $p['titulo'] ?>
+                            </h3>
+                        </a>
+
                         <p class="text-[#0077cc] font-bold text-xl"><?= $p['precio'] ?> €</p>
                     </div>
 

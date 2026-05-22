@@ -64,7 +64,7 @@
     <div class="fila-categorias flex flex-wrap gap-4">
 
       <?php foreach ($datos['categorias'] as $cat): ?>
-        <a href="<?= RUTA_URL ?>/paginas/index?cat=<?= htmlspecialchars($cat['slug']) ?>">
+        <a href="<?= RUTA_URL ?>/paginas/index?cat=<?= htmlspecialchars($cat['id']) ?>">
           <button
             class="px-5 py-3 text-lg bg-white border-2 border-[#a0b8d0] rounded-lg hover:bg-[#e6f2ff] transition shadow-sm">
             <?= htmlspecialchars($cat['nombre']) ?>

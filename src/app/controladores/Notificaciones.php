@@ -23,11 +23,9 @@ class Notificaciones extends Controlador
 
         $usuario_id = $_SESSION['usuario_id'];
 
-        // OBTENER TODAS LAS NOTIFICACIONES
-        $notificaciones = $this->notificacionModelo->obtenerTodas($usuario_id);
-
-        // MARCAR COMO LEÍDAS
         $this->notificacionModelo->marcarLeidas($usuario_id);
+
+        $notificaciones = $this->notificacionModelo->obtenerTodas($usuario_id);
 
         $datos = [
             'notificaciones' => $notificaciones,
@@ -63,7 +61,7 @@ class Notificaciones extends Controlador
         if (!isset($_SESSION['usuario_id'])) {
             return;
         }
-        
+
         $this->notificacionModelo->marcarLeidas($_SESSION['usuario_id']);
     }
 }

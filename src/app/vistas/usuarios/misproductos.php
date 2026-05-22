@@ -17,7 +17,7 @@
             Mis productos
         </h2>
 
-        <a href="<?= RUTA_URL ?>/productos/subir" 
+        <a href="<?= RUTA_URL ?>/productos/crear" 
            class="bg-[#0077cc] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-[#005fa3] transition shadow-md mb-6 inline-block">
             + Subir nuevo producto
         </a>

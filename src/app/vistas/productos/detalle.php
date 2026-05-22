@@ -20,7 +20,6 @@
 
             <div class="fila-carrusel flex items-center gap-4">
 
-                <!-- Flecha izquierda -->
                 <?php if ($total > 1): ?>
                     <button
                         class="flecha bg-[#0077cc] text-white text-3xl px-4 py-2 rounded-lg shadow hover:bg-[#005fa3] transition"
@@ -41,7 +40,6 @@
                     </div>
                 </div>
 
-                <!-- Flecha derecha -->
                 <?php if ($total > 1): ?>
                     <button
                         class="flecha bg-[#0077cc] text-white text-3xl px-4 py-2 rounded-lg shadow hover:bg-[#005fa3] transition"
@@ -50,7 +48,6 @@
 
             </div>
 
-            <!-- DOTS (PUNTOS DE IMAGEN) -->
             <div class="dots" id="dots">
                 <?php if ($total > 1): ?>
                     <?php foreach ($datos['imagenes'] as $i => $img): ?>
@@ -64,12 +61,10 @@
         <!-- COLUMNA DERECHA -->
         <div class="detalle-info flex flex-col gap-6 max-w-[500px]">
 
-            <!-- TITULO DEL PRODUCTO -->
             <h2 class="text-3xl font-bold text-gray-800">
                 <?= htmlspecialchars($datos['producto']['titulo']) ?>
             </h2>
 
-            <!-- USUARIO QUE SUBIÓ EL PRODUCTO -->
             <a href="<?= RUTA_URL ?>/usuarios/ver/<?= $datos['usuario']['usuario_id'] ?>"
                 class="flex items-center gap-3 mt-1 text-sm text-gray-600 hover:text-[#0077cc] transition">
 
@@ -82,42 +77,58 @@
 
             </a>
 
-            <!-- PRECIO -->
             <p class="precio text-3xl font-bold text-[#0077cc]">
                 <?= $datos['producto']['precio'] ?> €
             </p>
 
-            <!-- ESTADO -->
             <p class="estado text-lg text-gray-700">
                 <strong>Estado:</strong> <?= $datos['producto']['estado'] ?>
             </p>
 
-            <!-- DESCRIPCION -->
             <p class="descripcion text-lg leading-relaxed text-gray-700">
                 <?= nl2br(htmlspecialchars($datos['producto']['descripcion'])) ?>
             </p>
 
-            <!-- BOTON AÑADIR AL CARRITO -->
-            <a href="<?= RUTA_URL ?>/favoritos/agregar/<?= $datos['producto']['producto_id'] ?>"
-                class="btn-comprar bg-[#0077cc] text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#005fa3] transition shadow">
-                Añadir a favoritos
-            </a>
+            <?php 
+                $esPropietario = isset($_SESSION['usuario_id']) 
+                                 && $_SESSION['usuario_id'] == $datos['producto']['usuario_id'];
+            ?>
 
-            <!-- BOTON SOLICITAR COMPRA -->
-            <?php if (!isset($_SESSION['usuario_id'])): ?>
-                <p class="mensaje-login text-[#0077cc] font-semibold">Inicia sesión para solicitar la compra</p>
-            <?php else: ?>
-                <a href="<?= RUTA_URL ?>/solicitudes/crear/<?= $datos['producto']['producto_id'] ?>"
-                    class="btn-solicitar bg-[#ff9800] text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#e68900] transition shadow">
-                    Solicitar compra
+            <?php if ($esPropietario): ?>
+
+                <a href="<?= RUTA_URL ?>/productos/editar/<?= $datos['producto']['producto_id'] ?>"
+                   class="bg-green-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-green-700 transition shadow">
+                    Editar producto
                 </a>
+
+                <a href="<?= RUTA_URL ?>/productos/borrar/<?= $datos['producto']['producto_id'] ?>"
+                   class="bg-red-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-red-700 transition shadow"
+                   onclick="return confirm('¿Seguro que deseas borrar este producto?');">
+                    Borrar producto
+                </a>
+
+            <?php else: ?>
+
+                <a href="<?= RUTA_URL ?>/favoritos/agregar/<?= $datos['producto']['producto_id'] ?>"
+                    class="btn-comprar bg-[#0077cc] text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#005fa3] transition shadow">
+                    Añadir a favoritos
+                </a>
+
+                <?php if (!isset($_SESSION['usuario_id'])): ?>
+                    <p class="mensaje-login text-[#0077cc] font-semibold">Inicia sesión para solicitar la compra</p>
+                <?php else: ?>
+                    <a href="<?= RUTA_URL ?>/solicitudes/crear/<?= $datos['producto']['producto_id'] ?>"
+                        class="btn-solicitar bg-[#ff9800] text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#e68900] transition shadow">
+                        Solicitar compra
+                    </a>
+                <?php endif; ?>
+
             <?php endif; ?>
 
         </div>
 
     </div>
 
-    <!-- MÁS PRODUCTOS DEL VENDEDOR -->
     <?php if (!empty($datos['productosVendedor'])): ?>
         <h3 class="text-2xl font-bold mt-10 mb-4">Más productos de este vendedor</h3>
 
@@ -140,44 +151,6 @@
 
 </div>
 
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-
-        const inner = document.getElementById("carruselInner");
-        const imgs = inner.querySelectorAll(".img-carrusel");
-        const dots = document.querySelectorAll("#dots .dot");
-
-        const flechaIzq = document.getElementById("flechaIzq");
-        const flechaDer = document.getElementById("flechaDer");
-
-        let index = 0;
-        const width = 350;
-
-        if (imgs.length <= 1) return;
-
-        function actualizar() {
-            inner.style.transform = `translateX(-${index * width}px)`;
-            dots.forEach((d, i) => d.classList.toggle("active", i === index));
-        }
-
-        flechaDer?.addEventListener("click", () => {
-            index = (index + 1) % imgs.length;
-            actualizar();
-        });
-
-        flechaIzq?.addEventListener("click", () => {
-            index = (index - 1 + imgs.length) % imgs.length;
-            actualizar();
-        });
-
-        dots.forEach((dot, i) => {
-            dot.addEventListener("click", () => {
-                index = i;
-                actualizar();
-            });
-        });
-
-    });
-</script>
+<script src="<?= RUTA_URL ?>/js/detalle.js"></script>
 
 <?php require RUTA_APP . "/vistas/inc/footer.php"; ?>

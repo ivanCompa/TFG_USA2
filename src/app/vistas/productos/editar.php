@@ -53,6 +53,19 @@
             </select>
         </div>
 
+        <!-- CATEGORÍA (AÑADIDO) -->
+        <div>
+            <label class="label">Categoría:</label>
+            <select name="categoria_id" class="input" required>
+                <?php foreach ($datos['categorias'] as $cat): ?>
+                    <option value="<?= $cat['id'] ?>"
+                        <?= $cat['id'] == $datos['producto']['categoria_id'] ? 'selected' : '' ?>>
+                        <?= htmlspecialchars($cat['nombre']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
         <!-- IMAGEN PRINCIPAL -->
         <div>
             <label class="label">Imagen principal actual:</label>

@@ -1,4 +1,5 @@
 <?php
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -10,7 +11,7 @@ $imagenUsuario = "pfp_Anonymous.jpg";
 
 if (isset($_SESSION['usuario_id'])) {
     require_once RUTA_APP . "/modelos/UsuarioModelo.php";
-    $usuarioModelo = new UsuarioModelo();   // ← CORREGIDO
+    $usuarioModelo = new UsuarioModelo();
     $imagenBD = $usuarioModelo->obtenerImagen($_SESSION['usuario_id']);
 
     $rutaFisica = RUTA_APP . "/../public/img/usuarios/" . $imagenBD;
@@ -71,6 +72,7 @@ if (isset($_SESSION['usuario_id'])) {
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="<?= RUTA_URL ?>/css/index.css">
+<link rel="icon" href="<?= RUTA_URL ?>/img/Logo.ico">
 
 <header class="bg-white border-b-2 border-[#bcd8f0] px-6 py-4 flex justify-between items-center shadow-sm">
 
@@ -193,8 +195,12 @@ if (isset($_SESSION['usuario_id'])) {
                 <!-- MENÚ DE USUARIO DESPLEGABLE -->
                 <div
                     class="menu-desplegable absolute top-12 right-0 bg-white border border-[#bcd8f0] rounded-lg shadow-lg p-4 w-48 hidden">
-                    <a href="<?= RUTA_URL ?>/usuarios/perfil" class="block py-2 hover:bg-[#e6f2ff]">Mi perfil</a>
-                    <a href="<?= RUTA_URL ?>/usuarios/misproductos" class="block py-2 hover:bg-[#e6f2ff]">Mis productos</a>
+
+                    <?php if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "Administrador"): ?>
+                        <a href="<?= RUTA_URL ?>/usuarios/perfil" class="block py-2 hover:bg-[#e6f2ff]">Mi perfil</a>
+                        <a href="<?= RUTA_URL ?>/usuarios/misproductos" class="block py-2 hover:bg-[#e6f2ff]">Mis productos</a>
+                    <?php endif; ?>
+
                     <a href="<?= RUTA_URL ?>/usuarios/logout" class="block py-2 hover:bg-[#e6f2ff]">Cerrar sesión</a>
                 </div>
             </div>
@@ -205,8 +211,5 @@ if (isset($_SESSION['usuario_id'])) {
 
 </header>
 
-<script>
-    const RUTA_URL = "<?= RUTA_URL ?>";
-</script>
 
 <script src="<?= RUTA_URL ?>/js/header.js"></script>

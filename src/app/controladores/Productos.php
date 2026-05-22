@@ -19,6 +19,76 @@ class Productos extends Controlador
         redireccionar("/paginas/index");
     }
 
+    /* MOSTRAR FORMULARIO DE SUBIDA */
+    public function crear()
+    {
+        if (!isset($_SESSION['usuario_id'])) {
+            redireccionar("/usuarios/login");
+        }
+
+        $categorias = $this->productoModelo->obtenerCategorias();
+
+        $datos = [
+            "categorias" => $categorias,
+            "error" => ""
+        ];
+
+        $this->vista("productos/subir", $datos);
+    }
+
+    /* PROCESAR SUBIDA */
+    public function procesarSubida()
+    {
+        if (!isset($_SESSION['usuario_id'])) {
+            redireccionar("/usuarios/login");
+        }
+
+        if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+            redireccionar("/paginas/index");
+        }
+
+        $usuario_id = $_SESSION["usuario_id"];
+
+        $titulo = trim($_POST["titulo"]);
+        $descripcion = trim($_POST["descripcion"]);
+        $categoria_id = $_POST["categoria_id"];
+        $precio = $_POST["precio"];
+        $estado = $_POST["estado"];
+
+        // IMAGEN PRINCIPAL
+        $nombreImagen = uniqid() . "_" . $_FILES["imagen"]["name"];
+        $rutaDestino = RUTA_PUBLIC . "/img/productos/" . $nombreImagen;
+
+        move_uploaded_file($_FILES["imagen"]["tmp_name"], $rutaDestino);
+
+        // CREAR PRODUCTO
+        $datosProducto = [
+            "usuario_id" => $usuario_id,
+            "titulo" => $titulo,
+            "descripcion" => $descripcion,
+            "categoria_id" => $categoria_id,
+            "precio" => $precio,
+            "estado" => $estado,
+            "imagen" => $nombreImagen
+        ];
+
+        $producto_id = $this->productoModelo->crearProducto($datosProducto);
+
+        // IMÁGENES EXTRA
+        if (!empty($_FILES["imagenes_extra"]["name"][0])) {
+            foreach ($_FILES["imagenes_extra"]["name"] as $i => $nombreOriginal) {
+                $nuevoNombre = uniqid() . "_" . $nombreOriginal;
+                $rutaExtra = RUTA_PUBLIC . "/img/productos/" . $nuevoNombre;
+
+                move_uploaded_file($_FILES["imagenes_extra"]["tmp_name"][$i], $rutaExtra);
+
+                $this->productoModelo->agregarImagen($producto_id, $nuevoNombre);
+            }
+        }
+
+        redireccionar("/usuarios/misproductos");
+    }
+
     /* DETALLE DEL PRODUCTO */
     public function detalle($id)
     {
@@ -48,10 +118,14 @@ class Productos extends Controlador
             $usuario['imagen'] = "pfp_Anonymous.jpg";
         }
 
+        // CARGAR CATEGORÍA
+        $categoria = $this->productoModelo->obtenerCategoriaPorId($producto['categoria_id']);
+
         $datos = [
             'producto' => $producto,
             'imagenes' => $imagenesFinales,
-            'usuario' => $usuario
+            'usuario' => $usuario,
+            'categoria' => $categoria
         ];
 
         $this->vista("productos/detalle", $datos);
@@ -72,9 +146,13 @@ class Productos extends Controlador
 
         $imagenes = $this->productoModelo->obtenerImagenesProducto($id);
 
+        // CARGAR TODAS LAS CATEGORÍAS
+        $categorias = $this->productoModelo->obtenerCategorias();
+
         $datos = [
             "producto" => $producto,
-            "imagenes" => $imagenes
+            "imagenes" => $imagenes,
+            "categorias" => $categorias
         ];
 
         $this->vista("productos/editar", $datos);
@@ -99,13 +177,14 @@ class Productos extends Controlador
             die("No tienes permiso para editar este producto.");
         }
 
-        // ACTUALIZAR CAMPOS BÁSICOS
+
         $datosActualizados = [
             "id" => $id,
             "titulo" => trim($_POST["titulo"]),
             "descripcion" => trim($_POST["descripcion"]),
             "precio" => $_POST["precio"],
-            "estado" => $_POST["estado"]
+            "estado" => $_POST["estado"],
+            "categoria_id" => $_POST["categoria_id"]
         ];
 
         $this->productoModelo->actualizarProducto($datosActualizados);
@@ -200,7 +279,7 @@ class Productos extends Controlador
             die("No tienes permiso para eliminar este producto.");
         }
 
-        // LIMPIAR FAVORITOS Y NOTIFICAR USUARIOS AFECTADOS
+        // LIMPIAR FAVORITOS Y NOTIFICAR USUARIOS
         $this->limpiarFavoritosNotificar($id);
 
         // ELIMINAR IMÁGENES ADICIONALES
@@ -213,7 +292,7 @@ class Productos extends Controlador
     }
 
     /* LIMPIAR FAVORITOS Y NOTIFICAR */
-    private function limpiarFavoritosNotificar($producto_id)
+    private function limpiarFavoritosNotificar($producto_id, $comprador_id = null)
     {
         // OBTENER TÍTULO DEL PRODUCTO
         $producto = $this->productoModelo->obtenerProductoPorId($producto_id);
@@ -225,9 +304,14 @@ class Productos extends Controlador
         // ELIMINAR DE FAVORITOS
         $this->favoritosModelo->eliminarDeTodosLosFavoritos($producto_id);
 
-        // NOTIFICAR A CADA USUARIO
+        // NOTIFICAR USUARIOS QUE NO SON EL COMPRADOR
         foreach ($usuarios as $u) {
+
+            if ($comprador_id !== null && $u['usuario_id'] == $comprador_id) {
+                continue;
+            }
             $this->notificacionModelo->notificarFavoritoEliminado($u['usuario_id'], $titulo);
         }
     }
+
 }

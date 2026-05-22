@@ -34,7 +34,7 @@ class FavoritosModelo
             return false;
         }
 
-        // INSERTAR NUEVO PRODUCTO (SIN CANTIDAD)
+        // INSERTAR NUEVO PRODUCTO 
         $this->db->query("
             INSERT INTO favoritos (usuario_id, producto_id)
             VALUES (:u, :p)

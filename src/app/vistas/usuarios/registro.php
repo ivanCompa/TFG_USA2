@@ -20,7 +20,7 @@
             </p>
         <?php endif; ?>
 
-        <form action="<?= RUTA_URL ?>/usuarios/registro" method="POST" class="flex flex-col gap-5">
+        <form id="formRegistro" action="<?= RUTA_URL ?>/usuarios/registro" method="POST" class="flex flex-col gap-5">
 
             <div>
                 <label class="text-lg font-semibold">Usuario:</label>
@@ -56,5 +56,7 @@
     </div>
 
 </main>
+
+
 
 <?php require RUTA_APP . "/vistas/inc/footer.php"; ?>

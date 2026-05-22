@@ -509,3 +509,32 @@ main {
 .custom-select:focus + .select-arrow {
   transform: translateY(-50%) rotate(180deg);
 }
+
+
+
+
+@media (max-width: 1090px) {
+  .carrusel {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .carrusel .productos {
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .carrusel .producto {
+    flex: 1 1 calc(50% - 40px);
+    max-width: calc(50% - 40px);
+  }
+}
+
+@media (max-width: 500px) {
+  .carrusel .producto {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}

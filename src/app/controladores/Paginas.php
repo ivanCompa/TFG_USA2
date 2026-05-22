@@ -33,14 +33,15 @@ class Paginas extends Controlador
         // CARGAR CATEGORÍAS DESDE LA BD
         $categorias = $this->categoriaModelo->obtenerCategorias();
 
-        $slug = $_GET['cat'] ?? null;
+        // AHORA cat ES UN ID, NO UN SLUG
+        $categoriaId = isset($_GET['cat']) ? (int) $_GET['cat'] : null;
 
-        // BUSCAR CATEGORÍA SELECCIONADA
+        // BUSCAR CATEGORÍA SELECCIONADA POR ID
         $categoriaSeleccionada = null;
 
-        if ($slug) {
+        if ($categoriaId) {
             foreach ($categorias as $cat) {
-                if ($cat['slug'] === $slug) {
+                if ((int) $cat['id'] === $categoriaId) {
                     $categoriaSeleccionada = $cat['nombre'];
                     break;
                 }
@@ -51,17 +52,17 @@ class Paginas extends Controlador
         $orden = $_GET['orden'] ?? "";
 
         // PRODUCTOS
-        if ($categoriaSeleccionada) {
+        if ($categoriaId) {
 
-            // DESTACADOS
-            $destacados = $this->productoModelo->obtenerDestacadosPorCategoria($categoriaSeleccionada);
+            // DESTACADOS POR ID DE CATEGORÍA
+            $destacados = $this->productoModelo->obtenerDestacadosPorCategoria($categoriaId);
 
             // IDS PARA EXCLUIR
             $idsDestacados = array_column($destacados, 'producto_id');
 
-            // RESTO DE PRODUCTOS
+            // RESTO DE PRODUCTOS POR ID DE CATEGORÍA
             $restoProductos = $this->productoModelo->obtenerRestoPorCategoria(
-                $categoriaSeleccionada,
+                $categoriaId,
                 $idsDestacados,
                 $orden
             );
@@ -72,6 +73,7 @@ class Paginas extends Controlador
             $destacados = $this->productoModelo->obtenerDestacadosInicio();
             $restoProductos = [];
         }
+
 
         // ENVIAR DATOS A LA VISTA
         $datos = [

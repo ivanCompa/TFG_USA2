@@ -9,39 +9,6 @@ class UsuarioModelo
         $this->db = new Db;
     }
 
-    /* LOGIN POR NOMBRE (COMO ORIGINAL) */
-    public function obtenerUsuarioPorNombre($nombre)
-    {
-        $this->db->query("SELECT * FROM usuario WHERE nombre = :nombre");
-        $this->db->bind(':nombre', $nombre);
-        return $this->db->registro();
-    }
-
-    /* REGISTRO (GUARDA IMAGEN POR DEFECTO) */
-    public function registrarUsuario($usuario, $email, $password, $codigo_postal)
-    {
-        $this->db->query("INSERT INTO usuario (nombre, email, contraseña, codigo_postal, tipo_usuario, imagen) 
-                      VALUES (:nombre, :email, :password, :codigo_postal, 'Estandar', 'pfp_Anonymous.jpg')");
-
-        $this->db->bind(':nombre', $usuario);
-        $this->db->bind(':email', $email);
-        $this->db->bind(':password', $password);
-        $this->db->bind(':codigo_postal', $codigo_postal);
-
-        return $this->db->execute();
-    }
-
-
-    /* OBTENER IMAGEN */
-    public function obtenerImagen($usuario_id)
-    {
-        $this->db->query("SELECT imagen FROM usuario WHERE usuario_id = :id");
-        $this->db->bind(":id", $usuario_id);
-
-        $resultado = $this->db->registro();
-        return $resultado['imagen'] ?? "pfp_Anonymous.jpg";
-    }
-
     /* OBTENER USUARIO POR ID */
     public function obtenerUsuarioPorId($id)
     {
@@ -50,30 +17,21 @@ class UsuarioModelo
         return $this->db->registro();
     }
 
-    /* ACTUALIZAR PERFIL */
-    public function actualizarPerfil($id, $nombre, $email, $imagen, $codigo_postal)
+    /* LOGIN POR NOMBRE */
+    public function obtenerUsuarioPorNombre($nombre)
     {
-        $this->db->query("UPDATE usuario 
-                      SET nombre = :nombre, 
-                          email = :email, 
-                          imagen = :imagen,
-                          codigo_postal = :codigo_postal
-                      WHERE usuario_id = :id");
+        $this->db->query("SELECT * FROM usuario WHERE nombre = :nombre");
+        $this->db->bind(':nombre', $nombre);
+        return $this->db->registro();
+    }
 
-        $this->db->bind(":nombre", $nombre);
+    public function obtenerUsuarioPorEmail($email)
+    {
+        $this->db->query("SELECT * FROM usuario WHERE email = :email");
         $this->db->bind(":email", $email);
-        $this->db->bind(":imagen", $imagen);
-        $this->db->bind(":codigo_postal", $codigo_postal);
-        $this->db->bind(":id", $id);
-
-        return $this->db->execute();
+        return $this->db->registro();
     }
 
-    public function contarUsuarios()
-    {
-        $this->db->query("SELECT COUNT(*) AS total FROM usuario");
-        return $this->db->registro()['total'];
-    }
 
     public function obtenerUsuariosOrdenados($orden)
     {
@@ -128,5 +86,59 @@ class UsuarioModelo
 
         return $usuarios;
     }
+
+    /* REGISTRO */
+    public function registrarUsuario($usuario, $email, $password, $codigo_postal)
+    {
+        $this->db->query("INSERT INTO usuario (nombre, email, contraseña, codigo_postal, tipo_usuario, imagen) 
+                      VALUES (:nombre, :email, :password, :codigo_postal, 'Estandar', 'pfp_Anonymous.jpg')");
+
+        $this->db->bind(':nombre', $usuario);
+        $this->db->bind(':email', $email);
+        $this->db->bind(':password', $password);
+        $this->db->bind(':codigo_postal', $codigo_postal);
+
+        return $this->db->execute();
+    }
+
+
+    /* OBTENER IMAGEN */
+    public function obtenerImagen($usuario_id)
+    {
+        $this->db->query("SELECT imagen FROM usuario WHERE usuario_id = :id");
+        $this->db->bind(":id", $usuario_id);
+
+        $resultado = $this->db->registro();
+        return $resultado['imagen'] ?? "pfp_Anonymous.jpg";
+    }
+
+
+
+    /* ACTUALIZAR PERFIL */
+    public function actualizarPerfil($id, $nombre, $email, $imagen, $codigo_postal)
+    {
+        $this->db->query("UPDATE usuario 
+                      SET nombre = :nombre, 
+                          email = :email, 
+                          imagen = :imagen,
+                          codigo_postal = :codigo_postal
+                      WHERE usuario_id = :id");
+
+        $this->db->bind(":nombre", $nombre);
+        $this->db->bind(":email", $email);
+        $this->db->bind(":imagen", $imagen);
+        $this->db->bind(":codigo_postal", $codigo_postal);
+        $this->db->bind(":id", $id);
+
+        return $this->db->execute();
+    }
+
+    public function contarUsuarios()
+    {
+        $this->db->query("SELECT COUNT(*) AS total FROM usuario");
+        return $this->db->registro()['total'];
+    }
+
+
 
 }

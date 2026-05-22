@@ -53,13 +53,21 @@ class Usuarios extends Controlador
             $password = trim($_POST['password']);
             $codigo_postal = trim($_POST['codigo_postal']);
 
-            $existe = $this->usuarioModelo->obtenerUsuarioPorNombre($usuario);
-
-            if ($existe) {
+            if ($this->usuarioModelo->obtenerUsuarioPorNombre($usuario)) {
                 $datos = ['error' => "El usuario ya existe"];
                 $this->vista("usuarios/registro", $datos);
                 return;
             }
+
+
+
+            if ($this->usuarioModelo->obtenerUsuarioPorEmail($email)) {
+                $datos = ['error' => "Este e-mail ya está en uso."];
+                $this->vista("usuarios/registro", $datos);
+                return;
+            }
+
+
 
             $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
@@ -73,6 +81,9 @@ class Usuarios extends Controlador
             $this->vista("usuarios/registro", $datos);
         }
     }
+
+
+
 
     /* LOGOUT */
     public function logout()
@@ -139,7 +150,7 @@ class Usuarios extends Controlador
             }
 
             /* ACTUALIZAR EN BASE DE DATOS */
-            $this->usuarioModelo->actualizarPerfil($id, $nombre, $email, $imagenFinal, $codigo_postal); 
+            $this->usuarioModelo->actualizarPerfil($id, $nombre, $email, $imagenFinal, $codigo_postal);
 
             /* ACTUALIZAR SESION */
             $_SESSION['usuario_nombre'] = $nombre;
@@ -158,7 +169,7 @@ class Usuarios extends Controlador
             redireccionar('/usuarios/login');
         }
 
-        $productoModelo = $this->modelo('Producto');
+        $productoModelo = $this->modelo('ProductoModelo');
         $productos = $productoModelo->obtenerProductosDeUsuario($_SESSION['usuario_id']);
 
         $datos = [

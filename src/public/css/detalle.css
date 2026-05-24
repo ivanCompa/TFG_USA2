@@ -90,7 +90,7 @@
     background-color: #0077cc;
 }
 
-/* COLUMNA DERECHA: INFO DEL PRODUCTO */
+/* INFO DEL PRODUCTO */
 .detalle-info {
     display: flex;
     flex-direction: column;
@@ -192,14 +192,9 @@
     text-decoration: underline;
 }
 
-/* ============================
-   RESPONSIVE DETALLE PRODUCTO
-   ============================ */
-
-/* Pantallas medianas (tablets) */
+/* RESPONSIVE DETALLE PRODUCTO */
 @media (max-width: 900px) {
 
-  /* Contenedor principal en columna */
   .detalle-contenedor {
     flex-direction: column;
     align-items: center;
@@ -207,7 +202,6 @@
     gap: 30px;
   }
 
-  /* Carrusel más pequeño */
   .carrusel-detalle {
     width: 280px;
     height: 280px;
@@ -219,13 +213,11 @@
     object-fit: cover;
   }
 
-  /* Flechas más pequeñas */
   .flecha-detalle {
     font-size: 22px;
     padding: 8px 12px;
   }
 
-  /* Info centrada */
   .detalle-info {
     max-width: 90%;
     text-align: center;
@@ -244,7 +236,6 @@
   }
 }
 
-/* Pantallas pequeñas (móviles) */
 @media (max-width: 500px) {
 
   .detalle-contenedor {
@@ -252,7 +243,6 @@
     width: 100%;
   }
 
-  /* Carrusel aún más pequeño */
   .carrusel-detalle {
     width: 220px;
     height: 220px;

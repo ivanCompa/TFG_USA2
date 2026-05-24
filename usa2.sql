@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 22-05-2026 a las 21:00:41
+-- Tiempo de generación: 24-05-2026 a las 23:04:38
 -- Versión del servidor: 8.0.46
 -- Versión de PHP: 8.3.26
 
@@ -29,22 +29,21 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `categoria` (
   `id` int NOT NULL,
-  `nombre` varchar(100) NOT NULL,
-  `slug` varchar(100) NOT NULL
+  `nombre` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `categoria`
 --
 
-INSERT INTO `categoria` (`id`, `nombre`, `slug`) VALUES
-(1, 'Electrónica', 'electronica'),
-(2, 'Hogar', 'hogar'),
-(3, 'Bricolaje', 'bricolaje'),
-(4, 'Juguetes', 'juguetes'),
-(5, 'Moda', 'moda'),
-(6, 'Libros', 'libros'),
-(7, 'Otros', 'otros');
+INSERT INTO `categoria` (`id`, `nombre`) VALUES
+(1, 'Electrónica'),
+(2, 'Hogar'),
+(3, 'Bricolaje'),
+(4, 'Juguetes'),
+(5, 'Moda'),
+(6, 'Libros'),
+(7, 'Otros');
 
 -- --------------------------------------------------------
 
@@ -188,8 +187,7 @@ INSERT INTO `usuario` (`usuario_id`, `nombre`, `email`, `contraseña`, `codigo_p
 -- Indices de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `slug` (`slug`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `favoritos`
@@ -243,7 +241,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `favoritos`
@@ -279,7 +277,7 @@ ALTER TABLE `productoimagen`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usuario_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `usuario_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas

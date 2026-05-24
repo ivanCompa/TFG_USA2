@@ -33,7 +33,6 @@ class Paginas extends Controlador
         // CARGAR CATEGORÍAS DESDE LA BD
         $categorias = $this->categoriaModelo->obtenerCategorias();
 
-        // AHORA cat ES UN ID, NO UN SLUG
         $categoriaId = isset($_GET['cat']) ? (int) $_GET['cat'] : null;
 
         // BUSCAR CATEGORÍA SELECCIONADA POR ID

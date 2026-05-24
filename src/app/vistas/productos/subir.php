@@ -34,7 +34,7 @@
             <textarea name="descripcion" class="textarea" required></textarea>
         </div>
 
-        <!-- CATEGORÍA (CORREGIDO) -->
+        <!-- CATEGORÍA -->
         <div>
             <label class="label">Categoría:</label>
             <select name="categoria_id" class="input" required>

@@ -3,7 +3,7 @@ const btnIzq = document.querySelector('.flecha.izq');
 const btnDer = document.querySelector('.flecha.der');
 
 if (carrusel && btnIzq && btnDer) {
-    const productoWidth = 200 + 35; // 200px + 35px gap
+    const productoWidth = 200 + 35;
     const scrollAmount = productoWidth * 4;
 
     btnIzq.addEventListener('click', () => {

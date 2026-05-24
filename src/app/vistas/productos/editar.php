@@ -53,7 +53,7 @@
             </select>
         </div>
 
-        <!-- CATEGORÍA (AÑADIDO) -->
+        <!-- CATEGORÍA -->
         <div>
             <label class="label">Categoría:</label>
             <select name="categoria_id" class="input" required>

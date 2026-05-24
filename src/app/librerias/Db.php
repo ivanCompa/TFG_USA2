@@ -13,7 +13,6 @@ class Db
 
     public function __construct()
     {
-        // CORRECCIÓN: si el host es localhost, usar el nombre del contenedor MySQL
         if ($this->host === "localhost" || $this->host === "127.0.0.1" || $this->host === "db") {
             $this->host = "db";
         }

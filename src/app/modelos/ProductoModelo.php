@@ -26,14 +26,14 @@ class ProductoModelo
         return $this->db->registros();
     }
 
-    /* DESTACADOS GENERALES (4) */
+    /* DESTACADOS GENERALES */
     public function obtenerDestacados()
     {
         $this->db->query("SELECT * FROM producto ORDER BY RAND() LIMIT 4");
         return $this->db->registros();
     }
 
-    /* PRODUCTOS POR CATEGORÍA (AHORA categoria_id) */
+    /* PRODUCTOS POR CATEGORÍA */
     public function obtenerPorCategoria($categoria_id)
     {
         $this->db->query("SELECT * FROM producto WHERE categoria_id = :cat ORDER BY producto_id DESC");
@@ -41,7 +41,7 @@ class ProductoModelo
         return $this->db->registros();
     }
 
-    /* DESTACADOS POR CATEGORÍA (4) */
+    /* DESTACADOS POR CATEGORÍA */
     public function obtenerDestacadosPorCategoria($categoria_id)
     {
         $this->db->query("
@@ -54,7 +54,7 @@ class ProductoModelo
         return $this->db->registros();
     }
 
-    /* RESTO DE PRODUCTOS (EXCLUYENDO DESTACADOS) */
+    /* RESTO DE PRODUCTOS */
     public function obtenerRestoPorCategoria($categoria_id, $excluirIds)
     {
         if (empty($excluirIds)) {
@@ -133,7 +133,7 @@ class ProductoModelo
         return $this->db->registros();
     }
 
-    /* ACTUALIZAR CAMPOS DEL PRODUCTO (AÑADIDO categoria_id) */
+    /* ACTUALIZAR CAMPOS DEL PRODUCTO */
     public function actualizarProducto($datos)
     {
         $this->db->query("
@@ -198,7 +198,7 @@ class ProductoModelo
         return $this->db->execute();
     }
 
-    /* CREAR PRODUCTO (CORREGIDO: ahora usa categoria_id) */
+    /* CREAR PRODUCTO */
     public function crearProducto($datos)
     {
         $this->db->query("INSERT INTO producto 
@@ -279,14 +279,14 @@ class ProductoModelo
         return $this->db->execute();
     }
 
-    /* NUEVO: OBTENER TODAS LAS CATEGORÍAS */
+    /* OBTENER TODAS LAS CATEGORÍAS */
     public function obtenerCategorias()
     {
         $this->db->query("SELECT * FROM categoria ORDER BY nombre ASC");
         return $this->db->registros();
     }
 
-    /* NUEVO: OBTENER UNA CATEGORÍA POR ID */
+    /* OBTENER UNA CATEGORÍA POR ID */
     public function obtenerCategoriaPorId($id)
     {
         $this->db->query("SELECT * FROM categoria WHERE id = :id");

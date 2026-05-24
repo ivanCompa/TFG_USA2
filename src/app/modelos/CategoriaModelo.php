@@ -14,24 +14,21 @@ class CategoriaModelo
         $this->db->query("SELECT * FROM categoria ORDER BY nombre ASC");
         $resultado = $this->db->registros();
 
-
         $categorias = [];
         foreach ($resultado as $fila) {
             $categorias[] = [
                 "id" => $fila['id'],
-                "nombre" => $fila['nombre'],
-                "slug" => $fila['slug']
+                "nombre" => $fila['nombre']
             ];
         }
 
         return $categorias;
     }
 
-    public function crearCategoria($nombre, $slug)
+    public function crearCategoria($nombre)
     {
-        $this->db->query("INSERT INTO categoria (nombre, slug) VALUES (:nombre, :slug)");
+        $this->db->query("INSERT INTO categoria (nombre) VALUES (:nombre)");
         $this->db->bind(':nombre', $nombre);
-        $this->db->bind(':slug', $slug);
         return $this->db->execute();
     }
 
@@ -75,8 +72,7 @@ class CategoriaModelo
         foreach ($resultado as $fila) {
             $categorias[] = [
                 "id" => $fila['id'],
-                "nombre" => $fila['nombre'],
-                "slug" => $fila['slug']
+                "nombre" => $fila['nombre']
             ];
         }
 

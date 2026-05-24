@@ -6,7 +6,7 @@
     <h2 class="text-3xl font-bold mb-6 text-[#0077cc]">Gestión de categorías</h2>
 
     <!-- FORMULARIO CREAR -->
-    <form action="<?= RUTA_URL ?>/categorias/crear" method="POST" class="flex gap-4 mb-8">
+    <form action="<?= RUTA_URL ?>/admincategorias/crear" method="POST" class="flex gap-4 mb-8">
         <input type="text" name="nombre" placeholder="Nueva categoría"
             class="border border-gray-400 rounded-lg px-4 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-[#0077cc]"
             required>
@@ -25,21 +25,16 @@
             <th class="border p-3">
                 <?php
                 $flecha = "";
-                if ($datos['orden'] === 'id_asc')
-                    $flecha = "▲";
-                if ($datos['orden'] === 'id_desc')
-                    $flecha = "▼";
+                if ($datos['orden'] === 'id_asc') $flecha = "▲";
+                if ($datos['orden'] === 'id_desc') $flecha = "▼";
 
                 $siguiente = "id_asc";
-                if ($datos['orden'] === 'id_asc')
-                    $siguiente = "id_desc";
-                if ($datos['orden'] === 'id_desc')
-                    $siguiente = "";
+                if ($datos['orden'] === 'id_asc') $siguiente = "id_desc";
+                if ($datos['orden'] === 'id_desc') $siguiente = "";
                 ?>
-                <a href="<?= RUTA_URL ?>/categorias/index<?= $siguiente ? '?orden=' . $siguiente : '' ?>"
+                <a href="<?= RUTA_URL ?>/admincategorias/index<?= $siguiente ? '?orden=' . $siguiente : '' ?>"
                     class="font-bold hover:underline flex items-center gap-1">
-                    ID
-                    <?= $flecha ?>
+                    ID <?= $flecha ?>
                 </a>
             </th>
 
@@ -47,39 +42,31 @@
             <th class="border p-3">
                 <?php
                 $flecha = "";
-                if ($datos['orden'] === 'nombre_asc')
-                    $flecha = "▲";
-                if ($datos['orden'] === 'nombre_desc')
-                    $flecha = "▼";
+                if ($datos['orden'] === 'nombre_asc') $flecha = "▲";
+                if ($datos['orden'] === 'nombre_desc') $flecha = "▼";
 
                 $siguiente = "nombre_asc";
-                if ($datos['orden'] === 'nombre_asc')
-                    $siguiente = "nombre_desc";
-                if ($datos['orden'] === 'nombre_desc')
-                    $siguiente = "";
+                if ($datos['orden'] === 'nombre_asc') $siguiente = "nombre_desc";
+                if ($datos['orden'] === 'nombre_desc') $siguiente = "";
                 ?>
-                <a href="<?= RUTA_URL ?>/categorias/index<?= $siguiente ? '?orden=' . $siguiente : '' ?>"
+                <a href="<?= RUTA_URL ?>/admincategorias/index<?= $siguiente ? '?orden=' . $siguiente : '' ?>"
                     class="font-bold hover:underline flex items-center gap-1">
-                    Nombre
-                    <?= $flecha ?>
+                    Nombre <?= $flecha ?>
                 </a>
             </th>
 
-            <th class="border p-3">Slug</th>
             <th class="border p-3">Acciones</th>
 
         </tr>
-
-
 
         <?php foreach ($datos['categorias'] as $cat): ?>
             <tr>
                 <td class="border p-3"><?= $cat['id'] ?></td>
                 <td class="border p-3"><?= htmlspecialchars($cat['nombre']) ?></td>
-                <td class="border p-3"><?= htmlspecialchars($cat['slug']) ?></td>
                 <td class="border p-3">
-                    <a href="<?= RUTA_URL ?>/categorias/eliminar/<?= $cat['id'] ?>"
-                        class="text-red-600 font-semibold hover:underline" onclick="return confirm('¿Eliminar categoría?')">
+                    <a href="<?= RUTA_URL ?>/admincategorias/eliminar/<?= $cat['id'] ?>"
+                        class="text-red-600 font-semibold hover:underline"
+                        onclick="return confirm('¿Eliminar categoría?')">
                         Eliminar
                     </a>
                 </td>

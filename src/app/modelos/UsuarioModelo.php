@@ -139,6 +139,12 @@ class UsuarioModelo
         return $this->db->registro()['total'];
     }
 
+    public function eliminarUsuario($id)
+    {
+        $this->db->query("DELETE FROM usuario WHERE usuario_id = :id");
+        $this->db->bind(':id', $id);
+        return $this->db->execute();
+    }
 
 
 }

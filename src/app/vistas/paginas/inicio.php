@@ -62,7 +62,11 @@
     <h3 class="text-2xl font-bold mb-4">Categorías:</h3>
 
     <div class="fila-categorias flex flex-wrap gap-4">
-
+      <?php
+      usort($datos['categorias'], function ($a, $b) {
+        return $a['nombre'] === 'Otros' ? 1 : ($b['nombre'] === 'Otros' ? -1 : 0);
+      });
+      ?>
       <?php foreach ($datos['categorias'] as $cat): ?>
         <a href="<?= RUTA_URL ?>/paginas/index?cat=<?= htmlspecialchars($cat['id']) ?>">
           <button
@@ -104,8 +108,7 @@
           <a href="<?= RUTA_URL ?>/productos/detalle/<?= $p['producto_id'] ?>"
             class="producto bg-white border border-gray-300 rounded-xl p-4 shadow-md hover:shadow-xl transition transform hover:scale-105 text-center w-[200px]">
 
-            <img src="<?= RUTA_URL ?>/img/productos/<?= $p['imagen'] ?>"
-              alt="<?= htmlspecialchars($p['titulo']) ?>"
+            <img src="<?= RUTA_URL ?>/img/productos/<?= $p['imagen'] ?>" alt="<?= htmlspecialchars($p['titulo']) ?>"
               class="rounded-lg mb-3 w-full h-[180px] object-contain bg-white p-2 shadow-sm">
 
             <p class="text-2xl font-bold"><?= $p['precio'] ?> €</p>

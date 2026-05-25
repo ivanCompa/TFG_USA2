@@ -33,7 +33,7 @@
                 <?php foreach ($datos['productos'] as $p): ?>
                     <div class="flex items-center gap-6 border border-gray-300 rounded-xl p-4 shadow-sm">
 
-                        <img src="<?= RUTA_URL ?>/img/productos/<?= $p['imagen'] ?>" 
+                        <img src="/img/productos/<?= $p['imagen'] ?>" 
                              class="w-28 h-28 object-cover rounded-lg border">
 
                         <div class="flex-1">

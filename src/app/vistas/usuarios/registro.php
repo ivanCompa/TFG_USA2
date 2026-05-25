@@ -36,7 +36,7 @@
 
             <div>
                 <label class="text-lg font-semibold">Contraseña:</label>
-                <input type="password" name="password" required
+                <input type="password" name="password" required minlength="8"
                     class="mt-1 border border-gray-400 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#0077cc] shadow-sm">
             </div>
 
@@ -56,7 +56,5 @@
     </div>
 
 </main>
-
-
 
 <?php require RUTA_APP . "/vistas/inc/footer.php"; ?>

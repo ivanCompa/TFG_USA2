@@ -94,7 +94,7 @@
         </a>
       <?php endforeach; ?>
     <?php else: ?>
-      <p class="text-lg text-gray-700">No se encontraron productos.</p>
+      <p class="text-lg text-gray-700">No hay productos que coincidan con la búsqueda.</p>
     <?php endif; ?>
 
   </div>

@@ -1,6 +1,5 @@
 <?php require RUTA_APP . "/vistas/inc/header.php"; ?>
 
-<!-- TAILWIND -->
 <script src="https://cdn.tailwindcss.com"></script>
 
 <link rel="stylesheet" href="<?= RUTA_URL ?>/css/index.css">
@@ -42,9 +41,9 @@
 
             <div>
                 <label class="text-lg font-semibold">Código Postal:</label>
-                <input type="text" name="codigo_postal" required
+                <input type="text" name="codigo_postal" required pattern="[0-9]{5}" title="El código postal debe tener 5 dígitos"
                     class="mt-1 border border-gray-400 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#0077cc] shadow-sm"
-                    maxlength="10">
+                    maxlength="5">
             </div>
 
             <button type="submit"

@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let abierto = false;
 
-    // Detecta clic para abrir/cerrar
+    // DETECTA CLICK PARA ABRIR Y CERRAR
     select.addEventListener("pointerdown", () => {
         abierto = !abierto;
         arrow.style.transform = abierto
@@ -52,7 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
             : "translateY(-50%) rotate(0deg)";
     });
 
-    // Si pierde el foco por clic fuera
     select.addEventListener("blur", () => {
         abierto = false;
         arrow.style.transform = "translateY(-50%) rotate(0deg)";

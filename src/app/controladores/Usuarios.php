@@ -53,21 +53,23 @@ class Usuarios extends Controlador
             $password = trim($_POST['password']);
             $codigo_postal = trim($_POST['codigo_postal']);
 
+            if (!preg_match('/^[0-9]{5}$/', $codigo_postal)) {
+                $datos = ['error' => "El código postal debe tener 5 dígitos numéricos."];
+                $this->vista("usuarios/registro", $datos);
+                return;
+            }
+
             if ($this->usuarioModelo->obtenerUsuarioPorNombre($usuario)) {
                 $datos = ['error' => "El usuario ya existe"];
                 $this->vista("usuarios/registro", $datos);
                 return;
             }
 
-
-
             if ($this->usuarioModelo->obtenerUsuarioPorEmail($email)) {
                 $datos = ['error' => "Este e-mail ya está en uso."];
                 $this->vista("usuarios/registro", $datos);
                 return;
             }
-
-
 
             $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
@@ -81,8 +83,6 @@ class Usuarios extends Controlador
             $this->vista("usuarios/registro", $datos);
         }
     }
-
-
 
 
     /* LOGOUT */

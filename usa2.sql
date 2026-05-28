@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 24-05-2026 a las 23:04:38
+-- Tiempo de generación: 28-05-2026 a las 23:08:05
 -- Versión del servidor: 8.0.46
 -- Versión de PHP: 8.3.26
 
@@ -74,28 +74,6 @@ CREATE TABLE `notificaciones` (
   `extra_id` int DEFAULT NULL,
   `procesada` tinyint(1) NOT NULL DEFAULT '0',
   `estado` enum('pendiente','aceptada','rechazada') COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'pendiente'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `notificaciones`
---
-
-INSERT INTO `notificaciones` (`notificacion_id`, `usuario_id`, `comprador_id`, `mensaje`, `fecha`, `leida`, `tipo`, `extra_id`, `procesada`, `estado`) VALUES
-(83, 6, 3, 'Ivan está solicitando la compra de tu producto: Teclado Mecánico', '2026-05-22 18:25:53', 1, 'solicitud', 8, 1, 'aceptada'),
-(84, 3, 3, 'Has solicitado la compra del producto: Teclado Mecánico', '2026-05-22 18:25:53', 1, 'info', 8, 1, 'aceptada'),
-(85, 3, 3, 'Tu solicitud para comprar \'Teclado Mecánico\' ha sido aceptada. Pulsa para proceder al pago.', '2026-05-22 18:31:17', 1, 'pago', 8, 0, 'pendiente');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `pedido`
---
-
-CREATE TABLE `pedido` (
-  `pedido_id` int NOT NULL,
-  `usuario_id` int NOT NULL,
-  `fecha_pedido` datetime DEFAULT CURRENT_TIMESTAMP,
-  `estado` enum('Pendiente','Pagado','Enviado','Completado','Cancelado') COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -205,13 +183,6 @@ ALTER TABLE `notificaciones`
   ADD KEY `usuario_id` (`usuario_id`);
 
 --
--- Indices de la tabla `pedido`
---
-ALTER TABLE `pedido`
-  ADD PRIMARY KEY (`pedido_id`),
-  ADD KEY `usuario_id` (`usuario_id`);
-
---
 -- Indices de la tabla `producto`
 --
 ALTER TABLE `producto`
@@ -241,43 +212,37 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `favoritos`
 --
 ALTER TABLE `favoritos`
-  MODIFY `carrito_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `carrito_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  MODIFY `notificacion_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
-
---
--- AUTO_INCREMENT de la tabla `pedido`
---
-ALTER TABLE `pedido`
-  MODIFY `pedido_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `notificacion_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `producto_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `producto_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT de la tabla `productoimagen`
 --
 ALTER TABLE `productoimagen`
-  MODIFY `imagen_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `imagen_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usuario_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `usuario_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restricciones para tablas volcadas
@@ -295,12 +260,6 @@ ALTER TABLE `favoritos`
 --
 ALTER TABLE `notificaciones`
   ADD CONSTRAINT `notificaciones_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`usuario_id`);
-
---
--- Filtros para la tabla `pedido`
---
-ALTER TABLE `pedido`
-  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`usuario_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `producto`

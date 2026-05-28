@@ -95,7 +95,7 @@ class Productos extends Controlador
         $producto = $this->productoModelo->obtenerProductoPorId($id);
 
         if (!$producto) {
-            die("Producto no encontrado");
+            return $this->vista("productos/noencontrado");
         }
 
         $imagenes = $this->productoModelo->obtenerImagenesProducto($id);

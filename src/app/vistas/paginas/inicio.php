@@ -11,7 +11,6 @@
 
 <div class="bloque-superior bg-white border-b-2 border-[#bcd8f0] p-6 rounded-lg shadow-md">
 
-  <!-- BUSCADOR -->
   <form action="<?= isset($_GET['cat']) ? RUTA_URL . '/paginas/index' : RUTA_URL . '/productos/buscar' ?>" method="GET"
     class="busqueda flex flex-col md:flex-row md:items-center gap-4 mb-6">
 
@@ -23,7 +22,6 @@
         <input type="hidden" name="cat" value="<?= htmlspecialchars($_GET['cat']) ?>">
       <?php endif; ?>
 
-      <!-- BARRA DE BUSQUEDA -->
       <div class="relative">
         <input type="text" name="buscar" placeholder="Buscar producto..."
           value="<?= htmlspecialchars($_GET['buscar'] ?? '') ?>" class="search-input border border-gray-400 rounded-lg px-4 py-2 w-72 text-lg
@@ -31,7 +29,6 @@
         <span class="focus-line"></span>
       </div>
 
-      <!-- FILTRO ORDENAR POR -->
       <div class="relative">
         <select name="orden" class="custom-select border border-gray-400 rounded-lg px-4 py-2 text-lg bg-white shadow-sm
                      focus:outline-none transition-all" onchange="this.form.submit()">
@@ -47,7 +44,6 @@
         <div class="select-arrow"></div>
       </div>
 
-      <!-- BOTÓN BUSCAR -->
       <button type="submit"
         class="bg-[#0077cc] text-white px-6 py-2 rounded-lg hover:bg-[#005fa3] transition shadow-md text-lg">
         Buscar
@@ -56,8 +52,6 @@
     </div>
   </form>
 
-
-  <!-- CATEGORÍAS (CARGADAS DESDE LA BASE DE DATOS) -->
   <aside class="categorias">
     <h3 class="text-2xl font-bold mb-4">Categorías:</h3>
 
@@ -75,58 +69,56 @@
           </button>
         </a>
       <?php endforeach; ?>
-
     </div>
   </aside>
 
 </div>
 
-
 <main class="px-6 py-8">
 
-  <!-- PRODUCTOS DESTACADOS -->
-  <div
-    class="destacados-box bg-[#e8d7ff] border-2 border-[#c7aef5] rounded-xl p-8 shadow-lg w-[calc(100%-40px)] mx-auto">
+  <?php if (!empty($datos['destacados'])): ?>
+    <div
+      class="destacados-box bg-[#e8d7ff] border-2 border-[#c7aef5] rounded-xl p-8 shadow-lg w-[calc(100%-40px)] mx-auto">
 
-    <h3 class="text-2xl font-bold mb-6">
-      Productos destacados
-      <?php if (!empty($datos['categoriaSeleccionada'])): ?>
-        en <?= htmlspecialchars($datos['categoriaSeleccionada']) ?>
-      <?php endif; ?>:
-    </h3>
+      <h3 class="text-2xl font-bold mb-6">
+        Productos destacados
+        <?php if (!empty($datos['categoriaSeleccionada'])): ?>
+          en <?= htmlspecialchars($datos['categoriaSeleccionada']) ?>
+        <?php endif; ?>:
+      </h3>
 
-    <div class="carrusel flex items-center justify-center gap-6">
+      <div class="carrusel flex items-center justify-center gap-6">
 
-      <button
-        class="flecha izq bg-[#0077cc] text-white text-3xl px-5 py-3 rounded-lg shadow hover:bg-[#005fa3] transition">
-        ◀
-      </button>
+        <button
+          class="flecha izq bg-[#0077cc] text-white text-3xl px-5 py-3 rounded-lg shadow hover:bg-[#005fa3] transition">
+          ◀
+        </button>
 
-      <div class="productos flex gap-8 overflow-visible w-[calc(200px*4+35px*3)] mx-auto">
+        <div class="productos flex gap-8 overflow-visible w-[calc(200px*4+35px*3)] mx-auto">
 
-        <?php foreach ($datos['destacados'] as $p): ?>
-          <a href="<?= RUTA_URL ?>/productos/detalle/<?= $p['producto_id'] ?>"
-            class="producto bg-white border border-gray-300 rounded-xl p-4 shadow-md hover:shadow-xl transition transform hover:scale-105 text-center w-[200px]">
+          <?php foreach ($datos['destacados'] as $p): ?>
+            <a href="<?= RUTA_URL ?>/productos/detalle/<?= $p['producto_id'] ?>"
+              class="producto bg-white border border-gray-300 rounded-xl p-4 shadow-md hover:shadow-xl transition transform hover:scale-105 text-center w-[200px]">
 
-            <img src="<?= RUTA_URL ?>/img/productos/<?= $p['imagen'] ?>" alt="<?= htmlspecialchars($p['titulo']) ?>"
-              class="rounded-lg mb-3 w-full h-[180px] object-contain bg-white p-2 shadow-sm">
+              <img src="<?= RUTA_URL ?>/img/productos/<?= $p['imagen'] ?>" alt="<?= htmlspecialchars($p['titulo']) ?>"
+                class="rounded-lg mb-3 w-full h-[180px] object-contain bg-white p-2 shadow-sm">
 
-            <p class="text-2xl font-bold"><?= $p['precio'] ?> €</p>
-          </a>
-        <?php endforeach; ?>
+              <p class="text-2xl font-bold"><?= $p['precio'] ?> €</p>
+            </a>
+          <?php endforeach; ?>
+
+        </div>
+
+        <button
+          class="flecha der bg-[#0077cc] text-white text-3xl px-5 py-3 rounded-lg shadow hover:bg-[#005fa3] transition">
+          ▶
+        </button>
 
       </div>
-
-      <button
-        class="flecha der bg-[#0077cc] text-white text-3xl px-5 py-3 rounded-lg shadow hover:bg-[#005fa3] transition">
-        ▶
-      </button>
-
     </div>
-  </div>
+  <?php endif; ?>
 
-  <!-- RESTO DE PRODUCTOS -->
-  <?php if (!empty($datos['restoProductos'])): ?>
+  <?php if (!empty($datos['categoriaSeleccionada']) && !empty($datos['restoProductos'])): ?>
     <div
       class="todos-productos-box bg-[#e8d7ff] border-2 border-[#c7aef5] rounded-xl p-8 shadow-lg w-[calc(100%-40px)] mx-auto mt-10">
 
@@ -150,6 +142,22 @@
       </div>
 
     </div>
+
+  <?php elseif (!empty($datos['categoriaSeleccionada'])): ?>
+
+    <div
+      class="todos-productos-box bg-[#e8d7ff] border-2 border-[#c7aef5] rounded-xl p-8 shadow-lg w-[calc(100%-40px)] mx-auto mt-10 text-center">
+
+      <h3 class="text-2xl font-bold mb-6">
+        Todos los productos de <?= htmlspecialchars($datos['categoriaSeleccionada']) ?>
+      </h3>
+
+      <p class="text-lg text-gray-700">
+        No hay productos de esta categoría en estos momentos.
+      </p>
+
+    </div>
+
   <?php endif; ?>
 
 </main>
